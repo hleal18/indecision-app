@@ -1,6 +1,9 @@
 'use strict';
 
-//Event handlers.
+//Se busca usar data binding manualmente.
+//ya que jsx no lo posee intrínsecamente.
+//Se busca aprovechar componentes React para re-renderizar
+//el jsx cada vez que los datos cambian.
 console.log('App.js is running');
 
 var app = {
@@ -43,45 +46,54 @@ var template = React.createElement(
     )
 );
 
-//Hay elementos html que coinciden con palabras reservadas de javascript.
-//El atributo class de la etiqueta button es un ejemplo.
-//En lugar de class usar className.
 var count = 0;
 var addOne = function addOne() {
-    console.log('addOne');
+    count++;
+    renderCounterApp();
 };
 var minusOne = function minusOne() {
-    console.log('minusOne');
+    count--;
+    renderCounterApp();
 };
 var reset = function reset() {
-    console.log('reset');
+    count = 0;
+    renderCounterApp();
 };
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Count: ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: addOne },
-        ' + 1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: minusOne },
-        ' - 1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: reset },
-        'Reset'
-    )
-);
-console.log(templateTwo);
+
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+//Se puede pensar que es ineficiente el re-renderizado de todo el div
+//Si solo una cosa está cambiando, sin embargo, los algoritmos DOM
+// de React, son bastante eficientes, por lo cual, no hay porque preocuparse
+// por renderizar y re-renderizar el mismo root muchas veces.
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            ' + 1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            ' - 1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'Reset'
+        )
+    );
+
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();

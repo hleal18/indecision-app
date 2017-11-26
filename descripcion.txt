@@ -1,5 +1,4 @@
-# Proyecto #6
-* Se muestra un evento onClick de boton y como enlazarlo con
-una función.
-* Se muestran los problemas que pueden suceder al usar
-atributos html que coinciden con palabras reservada de javascript.
+# Proyecto #7
+* Se muestra una forma de re-renderizar elementos para actualizar la página.
+* Se detalla la eficiencia de React al momento de renderizar elementos que no sambian,
+enfocándose en lo que sí cambió.
