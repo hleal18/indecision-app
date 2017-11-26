@@ -1,8 +1,7 @@
-# Proyecto #1
-* Creación de carpeta public 
-    - Creación del fichero indice html con código sencillo.
-* Se requiere de **nodejs** y **yarn**.
-* Se instala **live-server** por medio del **npm**.
-* Por medio del **cmd**, se monta el servidor con el html mostrado en el navegador.
-* Cada cambio detectado en el fichero se actualiza automáticamente en el servidor.
-*Aún no se realiza código react*
+# Proyecto #2
+* Se importan los scrpipts de React y ReactDOM en el indice.html
+* Se importa el script app.js creado en la carpeta scripts de public.
+* Se da un primer ejemplo de una expresión JSX.
+* Se evidencia que el navegador no reconoce expresiones JSX.
+* Se menciona babeljs como un compilador de javascript como la solución.
+ - Las expresiones JSX, las compila a javascript normal, de forma que los navegadores lo reconozcas.
