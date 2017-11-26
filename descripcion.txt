@@ -1,3 +1,3 @@
 # Proyecto #5
-* Se hace una introducción a las arrow functions.
-** También la version sencilla de las expression arrow functions.
+* Se detalla las restricciones del arow functions
+con respecto a el objeto arguments y el objeto this.
