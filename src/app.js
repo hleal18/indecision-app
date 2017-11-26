@@ -1,5 +1,5 @@
-//Se busca cambiar los datos estáticos, a variables, teniendo en cuenta
-//Que los datos van a cambiar de acuerdo a usuarios, para que sean reutilizables.
+//Se busca el aprovechamiento de condicionales.
+//if y ternarios.
 console.log('App.js is running');
 
 var app = {
@@ -25,15 +25,23 @@ var user = {
     location: 'Cartagena'
 };
 
-//Se combinan las etiquetas con código javascript.
+//Se combinan las etiquetas con expresiones javascript. No se permiten declaraciones, como las if.
+//Para usar if, se plantean las funcions.
+function getLocation(location){
+    if (location) {
+        return location;
+    } else {
+        return 'Unknown';
+    }
+}
 var templateTwo = (
     <div>
         <h1>{user.name}</h1>
         <p>Edad: {user.age}</p>
-        <p>Ciudad: {user.location}</p>
+        <p>Ciudad: {getLocation(user.location)}</p>
     </div>
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
