@@ -1,17 +1,2 @@
-# Proyecto #2
-* Se usa npm para instalar globalmente babel-cli@6.24.1
-* Se puede comprobar usando en el cmd babel --help.
-* Se inicializa localmente yarn: yarn init.
-** Agrega automáticamente package.json, donde se coordinan las
-dependencias locales.
-* Se instala localmente, yarn add babel-preset-react@6.24.1 babel-preset-env@1.5.2
-* Se agregan carpetas con dependencias y subdependencias.
-* Se agrega una nuva carpeta src, que contendrá el código escrito.
-** La carpeta scripts, contendrá  el código generado o compilado.
-* Se compila el archivo especificado y se genera en la ruta especificada con los presets indicados.
-** babel src/app.js  --out-file=public/scripts/app.js --presets=env,react
-*** Un argumento --watch al final, deja iniciado un proceso que a una modificación, detecta el cambio
-y actualiza el archivo compilado.
-* Se usan dos cmd, uno con el watch que compila automaticamente y en el otro se inicia el servidor.
-* Si se llegan a borrar los node_modules (dependencias), es suficiente correr el comando yarn install
-(probar con npm), lo que hace es recrear el contenido del package.json.
+# Proyecto #3
+* Solo se realizaron mas instrucciones con JSX.
