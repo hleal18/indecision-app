@@ -1,2 +1,6 @@
-# Proyecto #4
-* Se reemplazan los datos estáticos por dinámicos, con el uso de variables javascript.
+# Proyecto #5
+* Se busca detallar el renderizado de condicionales.
+* Se usan tres técnicas.
+** Operador ternario.
+** Condicionales mediante la invocación de funciones.
+** Operador AND.
