@@ -1,4 +1,0 @@
-# Proyecto #7
-* Se muestra una forma de re-renderizar elementos para actualizar la página.
-* Se detalla la eficiencia de React al momento de renderizar elementos que no sambian,
-enfocándose en lo que sí cambió.
