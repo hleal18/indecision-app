@@ -1,3 +1,5 @@
-# Proyecto #5
-* Se detalla las restricciones del arow functions
-con respecto a el objeto arguments y el objeto this.
+# Proyecto #6
+* Se muestra un evento onClick de boton y como enlazarlo con
+una función.
+* Se muestran los problemas que pueden suceder al usar
+atributos html que coinciden con palabras reservada de javascript.

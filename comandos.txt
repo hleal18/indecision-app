@@ -1,0 +1,4 @@
+Iniciar live-server:
+** live-server public
+Iniciar babel con presets:
+babel src/app.js --out-file=public/scripts/app.js presets=env,react --watch
