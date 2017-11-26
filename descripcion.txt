@@ -1,2 +1,2 @@
-# Proyecto #3
-* Solo se realizaron mas instrucciones con JSX.
+# Proyecto #4
+* Se reemplazan los datos estáticos por dinámicos, con el uso de variables javascript.

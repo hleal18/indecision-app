@@ -1,17 +1,16 @@
-//Se buscan hacer templates dinamicas.
+//Se busca cambiar los datos estáticos, a variables, teniendo en cuenta
+//Que los datos van a cambiar de acuerdo a usuarios, para que sean reutilizables.
 console.log('App.js is running');
 
-//La siguiente linea da error. Solo pueden haber etiquetas encerradas en una raíz.
-//De forma que solo haya una etiqueta de cierre de una sola jerarquia.
-//var template = <h1> Indecision App. </h1><p>This is some info</p>;
-//Se soluciona envolviendo lo anterior en un div. De la siguiente forma:
-//Se le conoce como wrapper div.
-//Se le agregan paréntesis como buena práctica, para poder identificar las etiquetas
-//Que hacen parte del la variable template.
+var app = {
+    title: 'Indecision',
+    subtitle: 'Put your life in the hands of a computer'
+};
+
 var template = (
     <div>
-        <h1>Humberto Leal</h1>
-        <p>This is some info</p>
+        <h1>{app.title}</h1>
+        <p>{app.subtitle}</p>
         <ol>
             <li>Item in</li>
             <li>Item out</li>
@@ -19,15 +18,22 @@ var template = (
     </div>
 );
 
-//Challenge
+//Se usan objetos para representar datos de un usuario.
+var user = {
+    name: 'Humberto',
+    age: 18,
+    location: 'Cartagena'
+};
+
+//Se combinan las etiquetas con código javascript.
 var templateTwo = (
     <div>
-        <h1>Humberto Leal</h1>
-        <p>Edad: 18</p>
-        <p>Ciudad: Cartagena</p>
+        <h1>{user.name}</h1>
+        <p>Edad: {user.age}</p>
+        <p>Ciudad: {user.location}</p>
     </div>
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
