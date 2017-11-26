@@ -1,0 +1,8 @@
+# Proyecto #1
+* Creación de carpeta public 
+    - Creación del fichero indice html con código sencillo.
+* Se requiere de **nodejs** y **yarn**.
+* Se instala **live-server** por medio del **npm**.
+* Por medio del **cmd**, se monta el servidor con el html mostrado en el navegador.
+* Cada cambio detectado en el fichero se actualiza automáticamente en el servidor.
+*Aún no se realiza código react*
