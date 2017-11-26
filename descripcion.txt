@@ -1,5 +1,3 @@
 # Proyecto #5
-* Se indican las características de let y const
-con respecto a var.
-* Se elimina por completo de app.js el uso de var y Se
-reemplazan por let y const, donde corresponda.
+* Se hace una introducción a las arrow functions.
+** También la version sencilla de las expression arrow functions.

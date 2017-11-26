@@ -1,7 +1,3 @@
-//Se busca aprovechar nuevas características de javascript
-//Const y Let.
-//Se elimina por completo cualquier uso de var.
-//Como no se reasigna ninguna, se cambian a const.
 console.log('App.js is running');
 
 const app = {

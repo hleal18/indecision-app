@@ -1,5 +1,3 @@
-'use strict';
-
 // const square = function (x) {
 //     return x * x;
 // };
@@ -18,12 +16,11 @@
 // Reto - solo usar flechitas functions
 
 
-var getFirstName = function getFirstName(fullName) {
-    return fullName.split(' ')[0];
-};
+
+let getFirstName = (fullName) => fullName.split(' ')[0];
 console.log(getFirstName("Humberto Leal"));
 
-getFirstName = function getFirstName(fullName) {
+getFirstName = (fullName) => {
     return fullName.split(' ')[0];
-};
+}
 console.log(getFirstName("Humberto Leal"));
