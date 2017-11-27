@@ -1,3 +1,4 @@
+//Arrays en JSX.
 console.log('App.js is running');
 
 const app = {
@@ -25,6 +26,8 @@ const onRemoveAll = () => {
 
 const appRoot = document.getElementById('app');
 
+const numbers = [55, 101, 1000];
+
 const render = () => {
     const template = (
         <div>
@@ -33,9 +36,16 @@ const render = () => {
             <p>{app.options.length > 0 ? 'Here are your options.' : 'No options.'}</p>
             <p>{app.options.length}</p>
             <button onClick={onRemoveAll}>Remove All</button>
+            {
+                //No se usan objetos para arrays, solo arrays.
+                //JSX dentro de otro JSX para hacer arrays, requieren una
+                //key unica.
+                numbers.map((number) => <p key={number}> Number: {number} </p>)
+            }
             <ol>
-                <li>Item one</li>
-                <li>Item two</li>
+                {
+                    app.options.map((option) => <li key={option}>{option}</li>)
+                }
             </ol>            
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>

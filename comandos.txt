@@ -1,4 +1,8 @@
+Instalar live-server desde npm:
+npm install -g liver-server
 Iniciar live-server:
-** live-server public
+live-server public
+Instalar babel:
+npm install -g babel-cli@6.24.1
 Iniciar babel con presets:
-babel src/app.js --out-file=public/scripts/app.js presets=env,react --watch
+babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
