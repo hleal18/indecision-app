@@ -1,6 +1,8 @@
 'use strict';
 
-//Arrays en JSX.
+//Se busca la elección al azar de la opción.
+//En javascript, === implica la no conversión de un dato a comparar.
+// == implica una conversión del dato para compararlo.
 console.log('App.js is running');
 
 var app = {
@@ -24,6 +26,12 @@ var onFormSubmit = function onFormSubmit(e) {
 var onRemoveAll = function onRemoveAll() {
     app.options = [];
     render();
+};
+
+var onMakeDecision = function onMakeDecision() {
+    var randomNum = Math.floor(Math.random() * app.options.length);
+    var option = app.options[randomNum];
+    alert(option);
 };
 
 var appRoot = document.getElementById('app');
@@ -50,19 +58,15 @@ var render = function render() {
             app.options.length > 0 ? 'Here are your options.' : 'No options.'
         ),
         React.createElement(
-            'p',
-            null,
-            app.options.length
+            'button',
+            { disabled: app.options.length === 0 ? true : false, onClick: onMakeDecision },
+            'What should I do?'
         ),
         React.createElement(
             'button',
             { onClick: onRemoveAll },
             'Remove All'
         ),
-
-        //No se usan objetos para arrays, solo arrays.
-        //JSX dentro de otro JSX para hacer arrays, requieren una
-        //key unica.
         numbers.map(function (number) {
             return React.createElement(
                 'p',
