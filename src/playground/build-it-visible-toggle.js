@@ -1,19 +1,10 @@
-
-
+//resuelto por el autor
 const appRoot = document.getElementById('app');
 
-let buttonMessage = 'Show details';
-let show = false;
+let visibility = false;
 
-const onClickToggled = () => {
-    if(buttonMessage == 'Show details'){
-        buttonMessage = 'Hide details';
-        show = true;
-    } else {
-        buttonMessage = 'Show details';
-        show = false;
-    }
-
+const toggleVisibility = () => {
+    visibility = !visibility;
     render();
 }
 
@@ -21,10 +12,14 @@ const render = () => {
     const template = (
         <div>
             <h1>Visibility Toggle</h1>
-            <button onClick={onClickToggled}>{buttonMessage}</button>
-            {
-                show && <p> Hey, these are some details you can now see! </p>
-            }
+            <button onClick={toggleVisibility}>
+                {visibility ? 'Hide details' : 'Show details'}
+            </button>
+            {visibility && (
+                <div>
+                    <p> Hey. These are some details you can now see! </p>
+                </div>
+            )}            
         </div>
     );
 

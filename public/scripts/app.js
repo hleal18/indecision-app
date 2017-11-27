@@ -1,19 +1,12 @@
 'use strict';
 
+//resuelto por el autor
 var appRoot = document.getElementById('app');
 
-var buttonMessage = 'Show details';
-var show = false;
+var visibility = false;
 
-var onClickToggled = function onClickToggled() {
-    if (buttonMessage == 'Show details') {
-        buttonMessage = 'Hide details';
-        show = true;
-    } else {
-        buttonMessage = 'Show details';
-        show = false;
-    }
-
+var toggleVisibility = function toggleVisibility() {
+    visibility = !visibility;
     render();
 };
 
@@ -28,13 +21,17 @@ var render = function render() {
         ),
         React.createElement(
             'button',
-            { onClick: onClickToggled },
-            buttonMessage
+            { onClick: toggleVisibility },
+            visibility ? 'Hide details' : 'Show details'
         ),
-        show && React.createElement(
-            'p',
+        visibility && React.createElement(
+            'div',
             null,
-            ' Hey, these are some details you can now see! '
+            React.createElement(
+                'p',
+                null,
+                ' Hey. These are some details you can now see! '
+            )
         )
     );
 
