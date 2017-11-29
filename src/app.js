@@ -1,25 +1,16 @@
-//Se observa la inutitlidad del this en algunos componentes y una posibles solución.
-//Como por ejemplo desde handleRemoveAll hacer this.props.options.
-//Lo último está prohibido.
-
-//Se nota que hay un error al ver que getName no puede
-//invocar el método al que referencia debido a que no 
-//al this tiene acceso
-/*const obj = {
-    name: 'Vikram',
-    getName() {
-        return this.name;
-    }
-};
-
-//Se usa la función bind que recibe como parámetro el ambiente
-//o referencia sobre el cual actúa y permite enlazar correctamente
-//la transferencia de referencias con respecto a atributos de clases 
-//que antes eran inaccesibles
-const getName = obj.getName.bind(obj);
-
-console.log(getName());
-*/
+/**
+ * Component State: permite a los componentes manejar datos.
+ * Ej: cuando un componente cambia, automáticamente renderice la
+ * página.
+ * Se necesita primero, un estado por defecto. Así se establece
+ * que variable es la que se quiere rastrear.
+ * El componente se renderiza automáticamente con los valores
+ * por defecto.
+ * La variable rastreada cambia de estado debido a un evento.
+ * Se re-renderiza automáticamente basado en el cambio de la
+ * variable.
+ * Se mantiene el flujo actualización automática.
+ */
 class IndecisionApp extends React.Component {
     render () {
         const title = 'Indecision';
