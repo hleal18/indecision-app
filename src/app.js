@@ -30,10 +30,13 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    handlePick() {
+        alert('handlePick');
+    }
     render() {
         return (
             <div>
-                <button>
+                <button onClick={this.handlePick}>
                     What should I do?
                 </button>
             </div>
@@ -42,9 +45,13 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    handleRemoveAll() {
+        alert('handleRemoveAll');
+    }
     render() {
         return (
             <div>
+                <button onClick={this.handleRemoveAll}>Remove All</button>
                 {
                     //Se usan dos propiedades por key no es accesible, ya que es reservada.
                     //Para acceder al texto, se usa optionText
@@ -65,11 +72,24 @@ class Option extends React.Component {
     }
 }
 
+const test = (a) => console.log("HOLAA");
+
 class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+
+        const option = e.target.elements.option.value;
+        if(option){
+            alert(option);            
+        }
+    }
     render() {
         return (
             <div>
-                AddOption component here.
+                <form onSubmit={this.handleAddOption}>
+                    <input type="text" name="option"/>
+                    <button>Add Option</button>
+                </form>
             </div>
         );
     }
