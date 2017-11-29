@@ -1,21 +1,29 @@
-//Para que se comporte como un componente DOM extiende de React.Component
+//Se explican los component props, que permiten especificar los datos a mostrar
+//por un componente. Se usa por ejemplo el prop title con un valor.
+//y este es accesible en el fuente del componente por medio del this.props.
+//Así se crean componentes más flexibles.
 class IndecisionApp extends React.Component {
     render () {
-        return (<div>
-            <Header />
+        const title = 'Indecision';
+        const subtitle = 'Put your life in the hands of a computer.';
+        const options = ['Thing one', 'Thing two', 'Thing four'];
+
+        return (<div>            
+            <Header title={title} subtitle={subtitle} />
             <Action />
-            <Options />
+            <Options options={options} />
             <AddOption />     
         </div>);
     }
 }
 
+//Se crea un component prop que se renderiza en el html.
 class Header extends React.Component {
-    render() {        
+    render() {
         return (
             <div>
-                <h1>Indecision</h1>
-                <h2>Put your life in the hands of a computer.</h2>
+                <h1>{this.props.title}</h1>
+                <h2>{this.props.subtitle}</h2>
             </div>
         );
     }
@@ -37,8 +45,11 @@ class Options extends React.Component {
     render() {
         return (
             <div>
-                Options component here.
-                <Option />
+                {
+                    //Se usan dos propiedades por key no es accesible, ya que es reservada.
+                    //Para acceder al texto, se usa optionText
+                    this.props.options.map( (option) => <Option key={option} optionText={option} />)
+                }                
             </div>
         );
     }
@@ -48,7 +59,7 @@ class Option extends React.Component {
     render() {
         return (
             <div>
-                Option component here.
+                Option: {this.props.optionText}
             </div>
         );
     }
@@ -67,7 +78,7 @@ class AddOption extends React.Component {
 const jsx = (
     <div>
         <h1>Title</h1>
-        <Header />
+        <Header title="Test value" />
         <Action />
         <Options />
         <AddOption />        

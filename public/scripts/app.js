@@ -8,7 +8,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//Para que se comporte como un componente DOM extiende de React.Component
+//Se explican los component props, que permiten especificar los datos a mostrar
+//por un componente. Se usa por ejemplo el prop title con un valor.
+//y este es accesible en el fuente del componente por medio del this.props.
+//Así se crean componentes más flexibles.
 var IndecisionApp = function (_React$Component) {
     _inherits(IndecisionApp, _React$Component);
 
@@ -21,12 +24,16 @@ var IndecisionApp = function (_React$Component) {
     _createClass(IndecisionApp, [{
         key: 'render',
         value: function render() {
+            var title = 'Indecision';
+            var subtitle = 'Put your life in the hands of a computer.';
+            var options = ['Thing one', 'Thing two', 'Thing four'];
+
             return React.createElement(
                 'div',
                 null,
-                React.createElement(Header, null),
+                React.createElement(Header, { title: title, subtitle: subtitle }),
                 React.createElement(Action, null),
-                React.createElement(Options, null),
+                React.createElement(Options, { options: options }),
                 React.createElement(AddOption, null)
             );
         }
@@ -34,6 +41,9 @@ var IndecisionApp = function (_React$Component) {
 
     return IndecisionApp;
 }(React.Component);
+
+//Se crea un component prop que se renderiza en el html.
+
 
 var Header = function (_React$Component2) {
     _inherits(Header, _React$Component2);
@@ -53,12 +63,12 @@ var Header = function (_React$Component2) {
                 React.createElement(
                     'h1',
                     null,
-                    'Indecision'
+                    this.props.title
                 ),
                 React.createElement(
                     'h2',
                     null,
-                    'Put your life in the hands of a computer.'
+                    this.props.subtitle
                 )
             );
         }
@@ -109,8 +119,12 @@ var Options = function (_React$Component4) {
             return React.createElement(
                 'div',
                 null,
-                'Options component here.',
-                React.createElement(Option, null)
+
+                //Se usan dos propiedades por key no es accesible, ya que es reservada.
+                //Para acceder al texto, se usa optionText
+                this.props.options.map(function (option) {
+                    return React.createElement(Option, { key: option, optionText: option });
+                })
             );
         }
     }]);
@@ -133,7 +147,8 @@ var Option = function (_React$Component5) {
             return React.createElement(
                 'div',
                 null,
-                'Option component here.'
+                'Option: ',
+                this.props.optionText
             );
         }
     }]);
@@ -172,7 +187,7 @@ var jsx = React.createElement(
         null,
         'Title'
     ),
-    React.createElement(Header, null),
+    React.createElement(Header, { title: 'Test value' }),
     React.createElement(Action, null),
     React.createElement(Options, null),
     React.createElement(AddOption, null)
