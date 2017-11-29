@@ -1,5 +1,24 @@
 //Se crea de nuevo ahora con el uso de componentes
-//Se busca explicar el uso del estado.
+//Los metodos setState son asincronos.
+//setState puede recibir una función que regresa un
+//un objeto que actualiza los cmapos del estado.
+//react es más eficiente sobre todo si se llama dos
+//veces ese método. Si se llama uno, y llega a al etapa asíncrona
+/**
+ * //Se crea de nuevo ahora con el uso de componentes
+Los metodos setState son asincronos.
+//setState puede recibir una función que regresa un
+//un objeto que actualiza los cmapos del estado.
+//react es más eficiente sobre todo si se llama dos
+//veces ese método. Si se llama uno, y llega a al etapa asíncrona
+de recrear el DOM virtual y luego detecta la segunda llamada,
+evita re-renderizar dos veces y establece el orden de los cambios
+de forma que la renderización definitiva se muestre correctamente.
+
+Contrario sucede si se usa setState cuando recibe un objeto ya
+actualizado, se tiene el riesgo de caer en errores de renderización
+bastante raros, por lo cual se recomienda usar el primer método.
+ */
 
 class Counter extends React.Component {
     constructor(props){
