@@ -1,7 +1,25 @@
-//Se explican los component props, que permiten especificar los datos a mostrar
-//por un componente. Se usa por ejemplo el prop title con un valor.
-//y este es accesible en el fuente del componente por medio del this.props.
-//Así se crean componentes más flexibles.
+//Se observa la inutitlidad del this en algunos componentes y una posibles solución.
+//Como por ejemplo desde handleRemoveAll hacer this.props.options.
+//Lo último está prohibido.
+
+//Se nota que hay un error al ver que getName no puede
+//invocar el método al que referencia debido a que no 
+//al this tiene acceso
+/*const obj = {
+    name: 'Vikram',
+    getName() {
+        return this.name;
+    }
+};
+
+//Se usa la función bind que recibe como parámetro el ambiente
+//o referencia sobre el cual actúa y permite enlazar correctamente
+//la transferencia de referencias con respecto a atributos de clases 
+//que antes eran inaccesibles
+const getName = obj.getName.bind(obj);
+
+console.log(getName());
+*/
 class IndecisionApp extends React.Component {
     render () {
         const title = 'Indecision';
@@ -45,7 +63,14 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        //Se asegura que cada vez que se invoque handleRemoveAll
+        //Se esté en el ambiente correcto de enlace para invocar this.
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
     handleRemoveAll() {
+        console.log(this.props.options);
         alert('handleRemoveAll');
     }
     render() {

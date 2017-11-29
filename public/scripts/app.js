@@ -8,10 +8,28 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//Se explican los component props, que permiten especificar los datos a mostrar
-//por un componente. Se usa por ejemplo el prop title con un valor.
-//y este es accesible en el fuente del componente por medio del this.props.
-//Así se crean componentes más flexibles.
+//Se observa la inutitlidad del this en algunos componentes y una posibles solución.
+//Como por ejemplo desde handleRemoveAll hacer this.props.options.
+//Lo último está prohibido.
+
+//Se nota que hay un error al ver que getName no puede
+//invocar el método al que referencia debido a que no 
+//al this tiene acceso
+/*const obj = {
+    name: 'Vikram',
+    getName() {
+        return this.name;
+    }
+};
+
+//Se usa la función bind que recibe como parámetro el ambiente
+//o referencia sobre el cual actúa y permite enlazar correctamente
+//la transferencia de referencias con respecto a atributos de clases 
+//que antes eran inaccesibles
+const getName = obj.getName.bind(obj);
+
+console.log(getName());
+*/
 var IndecisionApp = function (_React$Component) {
     _inherits(IndecisionApp, _React$Component);
 
@@ -112,15 +130,21 @@ var Action = function (_React$Component3) {
 var Options = function (_React$Component4) {
     _inherits(Options, _React$Component4);
 
-    function Options() {
+    function Options(props) {
         _classCallCheck(this, Options);
 
-        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+        //Se asegura que cada vez que se invoque handleRemoveAll
+        //Se esté en el ambiente correcto de enlace para invocar this.
+        var _this4 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
+
+        _this4.handleRemoveAll = _this4.handleRemoveAll.bind(_this4);
+        return _this4;
     }
 
     _createClass(Options, [{
         key: 'handleRemoveAll',
         value: function handleRemoveAll() {
+            console.log(this.props.options);
             alert('handleRemoveAll');
         }
     }, {
