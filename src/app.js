@@ -1,32 +1,51 @@
-/**
- * Component State: permite a los componentes manejar datos.
- * Ej: cuando un componente cambia, automáticamente renderice la
- * página.
- * Se necesita primero, un estado por defecto. Así se establece
- * que variable es la que se quiere rastrear.
- * El componente se renderiza automáticamente con los valores
- * por defecto.
- * La variable rastreada cambia de estado debido a un evento.
- * Se re-renderiza automáticamente basado en el cambio de la
- * variable.
- * Se mantiene el flujo actualización automática.
- */
 class IndecisionApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+        this.handlePick = this.handlePick.bind(this);
+        this.state = {
+            options: ['Thing one', 'Thing two', 'Thing four']
+        };
+    }
+    handleDeleteOptions() {
+        this.setState(() => {
+            return {
+                options: []
+            };
+        });
+    }
+    handlePick() {
+        const decision = Math.floor(Math.random()*(this.state.options.length));
+        alert(this.state.options[decision]);
+    }
     render () {
         const title = 'Indecision';
         const subtitle = 'Put your life in the hands of a computer.';
-        const options = ['Thing one', 'Thing two', 'Thing four'];
 
         return (<div>            
             <Header title={title} subtitle={subtitle} />
-            <Action />
-            <Options options={options} />
+            <Action 
+                hasOptions={this.state.options.length > 0}
+                handlePick={this.handlePick}
+            />
+            {/*
+                Los dos componentes siguientes
+                requieren manipular el estado
+                de las opciones.
+                Para ello, se le pasan propiedades
+                como funciones y son pasadas
+                a estos componentes.
+            */}
+            <Options 
+                options={this.state.options}
+                handleDeleteOptions={this.handleDeleteOptions} 
+            />
             <AddOption />     
         </div>);
     }
 }
 
-//Se crea un component prop que se renderiza en el html.
+
 class Header extends React.Component {
     render() {
         return (
@@ -39,13 +58,13 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-    handlePick() {
-        alert('handlePick');
-    }
     render() {
         return (
             <div>
-                <button onClick={this.handlePick}>
+                <button 
+                    onClick={this.props.handlePick}
+                    disabled={!this.props.hasOptions}
+                >
                     What should I do?
                 </button>
             </div>
@@ -54,23 +73,11 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
-    constructor(props) {
-        super(props);
-        //Se asegura que cada vez que se invoque handleRemoveAll
-        //Se esté en el ambiente correcto de enlace para invocar this.
-        this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    }
-    handleRemoveAll() {
-        console.log(this.props.options);
-        alert('handleRemoveAll');
-    }
     render() {
         return (
             <div>
-                <button onClick={this.handleRemoveAll}>Remove All</button>
+                <button onClick={this.props.handleDeleteOptions}>Remove All</button>
                 {
-                    //Se usan dos propiedades por key no es accesible, ya que es reservada.
-                    //Para acceder al texto, se usa optionText
                     this.props.options.map( (option) => <Option key={option} optionText={option} />)
                 }                
             </div>
@@ -87,8 +94,6 @@ class Option extends React.Component {
         );
     }
 }
-
-const test = (a) => console.log("HOLAA");
 
 class AddOption extends React.Component {
     handleAddOption(e) {
@@ -110,15 +115,5 @@ class AddOption extends React.Component {
         );
     }
 }
-
-const jsx = (
-    <div>
-        <h1>Title</h1>
-        <Header title="Test value" />
-        <Action />
-        <Options />
-        <AddOption />        
-    </div>
-);
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
