@@ -6,3 +6,19 @@ Instalar babel:
 npm install -g babel-cli@6.24.1
 Iniciar babel con presets:
 babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+Se desinstalan las dependencias globales debido a las graves implicaciones que conlleva.
+1. No se enlistan en el package.json (ejemplo: babel cli y live-server)
+lo cual dificulta la colaboración.
+2. Si se tuvieran más proyectos que usan React, implicaría que todos ellos tienen que usar
+las mismas versiones que fueron instaladas, lo cual no es correcto.
+
+Se procede a desinstalar las mencionadas del ambiente global.
+-- yarn global remove babel-cli live-server
+
+Se instalan ahora localmente.
+npm install babel-cli@6.24.1 live-server
+
+Tener en cuenta que ahora no son accesibles desde el cmd. Comandos como babel... y live-server...
+ya no estan disponibles.
+
