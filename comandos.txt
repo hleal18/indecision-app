@@ -21,4 +21,5 @@ npm install babel-cli@6.24.1 live-server
 
 Tener en cuenta que ahora no son accesibles desde el cmd. Comandos como babel... y live-server...
 ya no estan disponibles.
+Se definen scripts en el package.json
 
