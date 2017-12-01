@@ -1,6 +1,11 @@
-//remover opciones individuales.
-// secimplifican las funciones simples con una nueva sintaxis.
-//Se agrega el boton de remover individual para cada opción.
+//Se usan los lifecycles methods.
+//Se accionan cada vez que sucede un cambio.
+//Permiten usarse para introducir datos en una base de datos.
+//Vienen incorporadas, por lo cual son reconocidas por React.
+//Los stateless functional components no las poseen.
+//Y son invocadas automáticamente.
+//Se busca aprovechar los lifecycle methods para guardar datos
+//localmente.
 class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
@@ -11,6 +16,19 @@ class IndecisionApp extends React.Component {
         this.state = {
             options: props.options
         };
+    }
+    //Se tienen acceso a props. prevState y prevProps
+    componentDidMount() {
+        console.log('ComponentDidMount');
+    }
+    //Se acciona despues de algun cambio en las props o state.
+    componentDidUpdate(prevProps, prevState) {
+        console.log('ComponentDidUpdate');
+    }
+    //Cuando un componente se va. (inaccesible creo
+    //No sucede con este componente, pero sí con option.
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
     }
     handleDeleteOptions() {
         this.setState(() => ({ options: [] }));

@@ -8,9 +8,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//remover opciones individuales.
-// secimplifican las funciones simples con una nueva sintaxis.
-//Se agrega el boton de remover individual para cada opción.
+//Se usan los lifecycles methods.
+//Se accionan cada vez que sucede un cambio.
+//Permiten usarse para introducir datos en una base de datos.
+//Vienen incorporadas, por lo cual son reconocidas por React.
+//Los stateless functional components no las poseen.
+//Y son invocadas automáticamente.
+//Se busca aprovechar los lifecycle methods para guardar datos
+//localmente.
 var IndecisionApp = function (_React$Component) {
     _inherits(IndecisionApp, _React$Component);
 
@@ -28,8 +33,30 @@ var IndecisionApp = function (_React$Component) {
         };
         return _this;
     }
+    //Se tienen acceso a props. prevState y prevProps
+
 
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log('ComponentDidMount');
+        }
+        //Se acciona despues de algun cambio en las props o state.
+
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            console.log('ComponentDidUpdate');
+        }
+        //Cuando un componente se va. (inaccesible creo
+        //No sucede con este componente, pero sí con option.
+
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('componentWillUnmount');
+        }
+    }, {
         key: 'handleDeleteOptions',
         value: function handleDeleteOptions() {
             this.setState(function () {
