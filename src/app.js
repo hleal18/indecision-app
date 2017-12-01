@@ -1,11 +1,5 @@
-//Se usan los lifecycles methods.
-//Se accionan cada vez que sucede un cambio.
-//Permiten usarse para introducir datos en una base de datos.
-//Vienen incorporadas, por lo cual son reconocidas por React.
-//Los stateless functional components no las poseen.
-//Y son invocadas automáticamente.
-//Se busca aprovechar los lifecycle methods para guardar datos
-//localmente.
+//Se guardan en el localStorage datos por medio de JSON.
+//Se agrega logica para evitar guardar datos redundantes. (remover cuando ya no hay nada).
 class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
@@ -16,17 +10,30 @@ class IndecisionApp extends React.Component {
         this.state = {
             options: props.options
         };
-    }
-    //Se tienen acceso a props. prevState y prevProps
+    }    
     componentDidMount() {
-        console.log('ComponentDidMount');
-    }
-    //Se acciona despues de algun cambio en las props o state.
+        //Se realiza try-catch por si el json a convertir tiene un formato inválido.
+
+        try{
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+
+            //Si no valores en el estado, no se inicia con los datos null.
+            //se hará con los datos por defecto, osea, un array vacio.
+            if (options) {
+                this.setState(() => ({ options }))
+            }
+        } catch (e) {
+            //No se hace nada, solo que no se interrumpe la ejecución.
+        }     
+    }    
     componentDidUpdate(prevProps, prevState) {
-        console.log('ComponentDidUpdate');
-    }
-    //Cuando un componente se va. (inaccesible creo
-    //No sucede con este componente, pero sí con option.
+        if(prevState.options.length !== this.state.options.length){
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+            console.log('Saving data');
+        }
+    }    
     componentWillUnmount() {
         console.log('componentWillUnmount');
     }
@@ -85,7 +92,6 @@ const Header = (props) => {
     );
 };
 
-//Un objeto con los props por defecto.
 Header.defaultProps = {
     title: 'Indecision'
 }
@@ -107,6 +113,7 @@ const Options = (props) => {
     return (
         <div>
             <button onClick={props.handleDeleteOptions}>Remove All</button>
+            {props.options.length === 0 && <p> Please add an option to get started! </p>}
             {
                 props.options.map((option) => (
                     <Option 
@@ -147,10 +154,15 @@ class AddOption extends React.Component {
     handleAddOption(e) {
         e.preventDefault();
 
-        const option = e.target.elements.option.value;
+        const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
         
-        this.setState(() => ({ error }));        
+        this.setState(() => ({ error }));
+        
+        //Se limpia el campo de texto.
+        if(!error) {
+            e.target.elements.option.value = '';
+        }
     }
     render() {
         return (

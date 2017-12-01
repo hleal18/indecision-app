@@ -8,14 +8,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//Se usan los lifecycles methods.
-//Se accionan cada vez que sucede un cambio.
-//Permiten usarse para introducir datos en una base de datos.
-//Vienen incorporadas, por lo cual son reconocidas por React.
-//Los stateless functional components no las poseen.
-//Y son invocadas automáticamente.
-//Se busca aprovechar los lifecycle methods para guardar datos
-//localmente.
+//Se guardan en el localStorage datos por medio de JSON.
+//Se agrega logica para evitar guardar datos redundantes. (remover cuando ya no hay nada).
 var IndecisionApp = function (_React$Component) {
     _inherits(IndecisionApp, _React$Component);
 
@@ -33,24 +27,36 @@ var IndecisionApp = function (_React$Component) {
         };
         return _this;
     }
-    //Se tienen acceso a props. prevState y prevProps
-
 
     _createClass(IndecisionApp, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            console.log('ComponentDidMount');
-        }
-        //Se acciona despues de algun cambio en las props o state.
+            //Se realiza try-catch por si el json a convertir tiene un formato inválido.
 
+            try {
+                var json = localStorage.getItem('options');
+                var options = JSON.parse(json);
+
+                //Si no valores en el estado, no se inicia con los datos null.
+                //se hará con los datos por defecto, osea, un array vacio.
+                if (options) {
+                    this.setState(function () {
+                        return { options: options };
+                    });
+                }
+            } catch (e) {
+                //No se hace nada, solo que no se interrumpe la ejecución.
+            }
+        }
     }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps, prevState) {
-            console.log('ComponentDidUpdate');
+            if (prevState.options.length !== this.state.options.length) {
+                var json = JSON.stringify(this.state.options);
+                localStorage.setItem('options', json);
+                console.log('Saving data');
+            }
         }
-        //Cuando un componente se va. (inaccesible creo
-        //No sucede con este componente, pero sí con option.
-
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
@@ -142,7 +148,6 @@ var Header = function Header(props) {
     );
 };
 
-//Un objeto con los props por defecto.
 Header.defaultProps = {
     title: 'Indecision'
 };
@@ -170,6 +175,11 @@ var Options = function Options(props) {
             'button',
             { onClick: props.handleDeleteOptions },
             'Remove All'
+        ),
+        props.options.length === 0 && React.createElement(
+            'p',
+            null,
+            ' Please add an option to get started! '
         ),
         props.options.map(function (option) {
             return React.createElement(Option, {
@@ -218,12 +228,17 @@ var AddOption = function (_React$Component2) {
         value: function handleAddOption(e) {
             e.preventDefault();
 
-            var option = e.target.elements.option.value;
+            var option = e.target.elements.option.value.trim();
             var error = this.props.handleAddOption(option);
 
             this.setState(function () {
                 return { error: error };
             });
+
+            //Se limpia el campo de texto.
+            if (!error) {
+                e.target.elements.option.value = '';
+            }
         }
     }, {
         key: 'render',
