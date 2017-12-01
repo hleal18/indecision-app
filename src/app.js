@@ -8,7 +8,7 @@ class IndecisionApp extends React.Component {
         this.handleAddOption = this.handleAddOption.bind(this);
         this.handleDeleteOption = this.handleDeleteOption.bind(this);
         this.state = {
-            options: props.options
+            options: []
         };
     }    
     componentDidMount() {
@@ -19,7 +19,7 @@ class IndecisionApp extends React.Component {
             const options = JSON.parse(json);
 
             //Si no valores en el estado, no se inicia con los datos null.
-            //se hará con los datos por defecto, osea, un array vacio.
+            //se hará con los de inicio, osea, un array vacio.
             if (options) {
                 this.setState(() => ({ options }))
             }
@@ -78,10 +78,6 @@ class IndecisionApp extends React.Component {
         </div>);
     }
 }
-
-IndecisionApp.defaultProps = {
-    options: []
-};
 
 const Header = (props) => {
     return (

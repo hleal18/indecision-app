@@ -23,7 +23,7 @@ var IndecisionApp = function (_React$Component) {
         _this.handleAddOption = _this.handleAddOption.bind(_this);
         _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
         _this.state = {
-            options: props.options
+            options: []
         };
         return _this;
     }
@@ -38,7 +38,7 @@ var IndecisionApp = function (_React$Component) {
                 var options = JSON.parse(json);
 
                 //Si no valores en el estado, no se inicia con los datos null.
-                //se hará con los datos por defecto, osea, un array vacio.
+                //se hará con los de inicio, osea, un array vacio.
                 if (options) {
                     this.setState(function () {
                         return { options: options };
@@ -126,10 +126,6 @@ var IndecisionApp = function (_React$Component) {
 
     return IndecisionApp;
 }(React.Component);
-
-IndecisionApp.defaultProps = {
-    options: []
-};
 
 var Header = function Header(props) {
     return React.createElement(
