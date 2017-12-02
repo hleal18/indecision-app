@@ -1,35 +1,35 @@
 //install - import - use
-import React from 'react';
+import React, { Children } from 'react';
 import ReactDOM from 'react-dom';
 import IndecisionApp from './components/IndecisionApp';
 
+const Layout = (props) => {
+    return (
+        <div>
+            <p>header</p>
+            {props.children}
+            <p>footer</p>
+            
+        </div>
+    );
+};
 
+const template = (
+    <div>
+        <h1>Page title</h1>
+        <p>This is my page.</p>
+    </div>
+);
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
-
-class OldSyntax {
-    constructor(){
-        this.name = "Mike";
-    }
-    getGreeting() {
-        return `Hi. My name is ${this.name}.`;
-    }
-}
-
-const oldSyntax = new OldSyntax();
-const getGreeting = oldSyntax.getGreeting;
-//console.log(getGreeting());
-
-// nueva sintaxis
-//Se definen propiedades y métodos que no rompen el acceso a this..
-class NewSyntax {
-    name = 'Jen';
-    //Están en el alcance de la clase. Tienen acceso a this y no rompen el enlace.
-    getGreeting = () => {
-        return `Hi. My name is ${this.name}.`;
-    }
-}
-
-const newSyntax = new NewSyntax();
-const newGetGreeting = newSyntax.getGreeting;
-console.log(newGetGreeting());
+//Se puede usar esta sintaxis para pasar jsx
+//ReactDOM.render(<Layout content={template}/>, document.getElementById('app'));
+//O con un par de etiquetas que referencian lo que se va a renderizar entre ellos.
+//Tiene incorporado el 'children', como propiedad de props.
+//Se usa mucho con componentes de terceros.
+ReactDOM.render((
+    <Layout>
+        <div>
+            <h1>Page title</h1>
+            <p>This is my page.</p>
+        </div>
+    </Layout>), document.getElementById('app'));
