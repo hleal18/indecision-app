@@ -22,7 +22,8 @@ module.exports = {
             //no se ejecuta para los archivos en node_modules.
             exclude: /node_modules/
         }]
-    }
+    },
+    devtool: 'cheap-module-eval-source-map'
 };
 
 //loader
