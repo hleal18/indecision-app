@@ -51,3 +51,8 @@ Se completan las configuraciones del webpack y babelrc.
 Se observa que con un simple instruccions jsx el archivo generado, bundle.js
 genera una cantidad exagerada de código (20000 líneas).
 Al usar webpack para producción mucho de ese código, no estará.
+
+Se instala un nuevo plugin, babel-plugin-transform-class-properties
+Permite usar sintaxis es6 para definir propiedades de clases y traducirlo a es6.
+npm install babel-plugin-transform-class-properties
+se configura babelrc agregando una nueva propiedad, plugins con "transform-class-properties"
