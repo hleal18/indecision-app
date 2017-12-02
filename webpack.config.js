@@ -22,7 +22,7 @@ module.exports = {
             //no se ejecuta para los archivos en node_modules.
             exclude: /node_modules/
         }, {
-            test: /\.scss$/,
+            test: /\.s?css$/,
             //Permite especificar un arreglo de loaders.
             use: [
                 'style-loader',

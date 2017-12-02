@@ -72,3 +72,7 @@ se instalan dos nuevas herramientas:
 sass-loader
 node-sass (es el que lo convierte en css)
 solo se agrega el loader de sass-loader, el implícitamente usará node-sass.
+
+se estan aplicando estilos en el navegador, lo cual implica que puedan haber situaciones
+inesperadas con navegadores diferentes. Para ello se requieren de los resets.
+se instala el paquete normalize-css
