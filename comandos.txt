@@ -23,3 +23,9 @@ Tener en cuenta que ahora no son accesibles desde el cmd. Comandos como babel...
 ya no estan disponibles.
 Se definen scripts en el package.json
 
+Se instala webpack localmente
+-- yarn add webpack@3.1.0
+Se requiere proveer un archivo de configuración.
+
+Webpack se encarga de realizar el trabajo que hacía babel.
+Se configura scripts para el webpack y un archivo config.
