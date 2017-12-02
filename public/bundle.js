@@ -65,9 +65,44 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-console.log("app.js is running!");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__person_js__ = __webpack_require__(2);
+//Al importarlo se ejecuta la llamada a la consola.
+//import './utils.js'
+//Para importar funcionalidades especificas
+//El archivo a requerir debe especificar los valores
+//exportables.
+//Se obtiene específicamente la funcionalidad requerida.
+//Los nombres de las funcionalidades a obtener tienen que coincidir.
+// import { square, add } from './utils.js';
+
+// console.log("app.js is running!");
+
+// //Cada archivo mantiene su propio ambiente y alcance.
+// //No se tiene acceso a lo siguiente:
+// console.log(square(4));
+// console.log(add(100,23));
+
+
+
+console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["b" /* isAdult */](18));
+console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["a" /* canDrink */](10));
+
+/***/ }),
+/* 1 */,
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const isAdult = (age) => age >= 18;
+/* harmony export (immutable) */ __webpack_exports__["b"] = isAdult;
+
+const canDrink = (age) => age >= 21;
+/* harmony export (immutable) */ __webpack_exports__["a"] = canDrink;
+
 
 /***/ })
 /******/ ]);
