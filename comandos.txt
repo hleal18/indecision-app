@@ -29,3 +29,13 @@ Se requiere proveer un archivo de configuración.
 
 Webpack se encarga de realizar el trabajo que hacía babel.
 Se configura scripts para el webpack y un archivo config.
+
+Se instala como ejemplo el modulo validator por npm. version 8.0.0
+Se accede a él importandolo en app.js como:
+import validator from 'validator';
+es suficiente con poner el nombre ya que se sabe que buscará
+un módulo instalado.
+
+Luego se instala React por medio del npm.
+Se instala también ReactDOM por medio del npm.
+npm install react@16.0.0 react-dom@16.0.0
