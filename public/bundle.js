@@ -69,7 +69,7 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__person_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__person_js__ = __webpack_require__(1);
 //Al importarlo se ejecuta la llamada a la consola.
 //import './utils.js'
 //Para importar funcionalidades especificas
@@ -77,32 +77,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //exportables.
 //Se obtiene específicamente la funcionalidad requerida.
 //Los nombres de las funcionalidades a obtener tienen que coincidir.
-// import { square, add } from './utils.js';
+//substract se importa como default, debido a que lo es.
+//el default puede referenciarse con cualquier nombre.
+// import restica, { square, add } from './utils.js';
 
-// console.log("app.js is running!");
+// // console.log("app.js is running!");
 
-// //Cada archivo mantiene su propio ambiente y alcance.
-// //No se tiene acceso a lo siguiente:
+// // //Cada archivo mantiene su propio ambiente y alcance.
+// // //No se tiene acceso a lo siguiente:
 // console.log(square(4));
 // console.log(add(100,23));
+// console.log(restica(100, 81));
 
 
 
-console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["b" /* isAdult */](18));
-console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["a" /* canDrink */](10));
+console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["c" /* isAdult */](25));
+console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["a" /* canDrink */](21));
+console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["b" /* default */](35));
+
 
 /***/ }),
-/* 1 */,
-/* 2 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 const isAdult = (age) => age >= 18;
-/* harmony export (immutable) */ __webpack_exports__["b"] = isAdult;
+/* harmony export (immutable) */ __webpack_exports__["c"] = isAdult;
 
 const canDrink = (age) => age >= 21;
 /* harmony export (immutable) */ __webpack_exports__["a"] = canDrink;
 
+const isSenior = (age) => {
+    return age >= 65
+};
+/* harmony default export */ __webpack_exports__["b"] = (isSenior);
 
 /***/ })
 /******/ ]);
