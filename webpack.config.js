@@ -1,20 +1,37 @@
-//Es un script de node.
-//Donde se comienza la aplicación /app.js de src. y donde se pone el resultado.
-
-//Debido a las operaciones con path, se usan modulos de node.
 const path = require('path');
-//Imprime por consola la ruta absoluta del proyecto.
 console.log(__dirname);
 
 console.log(path.join(__dirname, 'public'));
 
-//permite exponer un objeto en otro archivo.
 module.exports = {
     entry: './src/app.js',
     output: {
-        //Ruta absoluta donde se debe poner el bundle
         path: path.join(__dirname, 'public'),
-        //Puede ser cualquiera (no se para que sirve)
         filename: 'bundle.js'
+    },
+    module: {
+        //Se usan rules para definir como usar los loader.
+        //Tomar un jsx y convertirlo ej es6.
+        rules: [{
+            loader: 'babel-loader',
+            //Se usan regular expressions. (Consultar).
+            //Se encarga de comprobar si el archivo analizado
+            //es de extensión .js
+            //solo cuando se cumple este criterio, se ejecuta babel.
+            test: /\.js$/,
+            //no se ejecuta para los archivos en node_modules.
+            exclude: /node_modules/
+        }]
     }
 };
+
+//loader
+/**
+ * permite modificar el comportamiento de webpack cada vez
+ * que ve un archivo con extensión específica ej: (archivo js).
+ * Cada vez que vea un archivo js, ejecute babel.
+ * Despues de instalar babel-core y babel-loader. se agrega
+ * la propiedad module al objeto exports.
+ * Despues, hay que crear un archivo de configuración específico
+ * para babel. Se llama .babelrc
+ */

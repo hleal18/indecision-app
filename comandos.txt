@@ -39,3 +39,15 @@ un módulo instalado.
 Luego se instala React por medio del npm.
 Se instala también ReactDOM por medio del npm.
 npm install react@16.0.0 react-dom@16.0.0
+
+Hay que instalar dependencias para ejecutar babel a través del
+webpack. Se hacen localmente.
+1. babel-core@6.25.0 : permite correr babel desde herramientas como
+webpack.
+2. babel-loader@7.1.1 : es un plugin de webpack. Le indica a webpack como
+ejecutar babel.
+Se completan las configuraciones del webpack y babelrc.
+
+Se observa que con un simple instruccions jsx el archivo generado, bundle.js
+genera una cantidad exagerada de código (20000 líneas).
+Al usar webpack para producción mucho de ese código, no estará.
