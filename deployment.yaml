@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: indecision-app-deployment
+    labels:
+        app: indecision-app
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: indecision-app
+    template:
+        metadata
